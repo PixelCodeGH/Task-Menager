@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade to Pro - Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <i class="bi bi-check2-square me-2"></i>Task Manager
+            </a>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+                <i class="bi bi-sun-fill"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="mb-4">Upgrade to Pro</h1>
+                <p class="lead mb-5">Get unlimited tasks and premium features!</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card pricing-card">
+                    <div class="card-body text-center p-5">
+                        <h3>Free</h3>
+                        <div class="price-tag mb-4">
+                            <span class="currency">$</span>0
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="bi bi-check-circle-fill"></i> Up to 5 tasks</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Basic task management</li>
+                            <li><i class="bi bi-x-circle"></i> Unlimited tasks</li>
+                            <li><i class="bi bi-x-circle"></i> Priority support</li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100" disabled>Current Plan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card pricing-card pro-card">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-body text-center p-5">
+                        <h3>Pro</h3>
+                        <div class="price-tag pro-price mb-4">
+                            <span class="currency">$</span>9.99
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="bi bi-check-circle-fill"></i> Unlimited tasks</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Advanced task management</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Priority support</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Future premium features</li>
+                        </ul>
+                        <button class="btn btn-primary w-100" id="upgradeBtn">Upgrade Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme === 'dark');
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                const newTheme = isDark ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(!isDark);
+            });
+
+            function updateThemeIcon(isDark) {
+                const icon = themeToggle.querySelector('i');
+                icon.className = isDark ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
+            }
+
+            const upgradeBtn = document.getElementById('upgradeBtn');
+            upgradeBtn.addEventListener('click', () => {
+                localStorage.setItem('isPro', 'true');
+                alert('Congratulations! You have been upgraded to Pro!');
+                window.location.href = 'index.html';
+            });
+
+            if (localStorage.getItem('isPro') === 'true') {
+                upgradeBtn.textContent = 'Already Pro';
+                upgradeBtn.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html> 

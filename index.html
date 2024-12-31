@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <span class="navbar-brand">
+                <i class="bi bi-check2-circle me-2"></i>TaskFlow
+            </span>
+            <div class="d-flex align-items-center">
+                <button class="theme-toggle me-3" id="theme-toggle" title="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+                <div class="navbar-text me-3">
+                    <i class="bi bi-calendar-event me-1"></i>
+                    <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="quick-add-section mb-4">
+                    <div class="input-group">
+                        <input type="text" id="task-input" class="form-control" placeholder="Add a new task...">
+                        <button id="quick-add-btn" class="btn btn-primary">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="task-stats mb-4">
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="bi bi-list-check"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span id="total-tasks">0</span>
+                                    <h6>Total</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="bi bi-check2-all"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span id="completed-tasks">0</span>
+                                    <h6>Done</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="bi bi-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span id="pending-tasks">0</span>
+                                    <h6>Pending</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-section">
+                    <div class="task-header d-flex justify-content-between align-items-center mb-3">
+                        <div class="task-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="completed">Completed</button>
+                        </div>
+                        <button id="clear-completed" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Clear Completed
+                        </button>
+                    </div>
+
+                    <div class="task-list" id="task-list">
+                        <!-- Tasks will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-details-modal modal fade" id="taskDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Task Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Task Description</label>
+                        <input type="text" class="form-control" id="modal-task-input">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Day</label>
+                            <select id="taskDay" class="form-select">
+                                <option value="0">Sunday</option>
+                                <option value="1">Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hour</label>
+                            <select id="taskHour" class="form-select"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Minute</label>
+                            <select id="taskMinute" class="form-select"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="add-task-button">Add Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
